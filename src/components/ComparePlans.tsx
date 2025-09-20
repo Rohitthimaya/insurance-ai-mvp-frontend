@@ -13,7 +13,7 @@ interface InsurancePlan {
   rating: number;
   term: string;
   benefits: string[];
-  cashback?: number;
+  giftcard?: number;
   icon?: string;
   url?: string;
 }
@@ -138,7 +138,7 @@ export default function ComparePlans() {
     plan.price >= priceRange[0] && plan.price <= priceRange[1] &&
     plan.rating >= ratingFilter &&
     (termFilter === "All" || plan.term === termFilter) &&
-    (!cashbackOnly || (plan.cashback && plan.cashback > 0)) &&
+    (!cashbackOnly || (plan.giftcard && plan.giftcard > 0)) &&
     (benefitsFilter.length === 0 || benefitsFilter.every(b => plan.benefits.includes(b)))
   );
 
@@ -320,7 +320,7 @@ export default function ComparePlans() {
                   ))}
                 </div>
 
-                {plan.cashback && <p className="text-green-600 font-medium mb-2">Cashback: ${plan.cashback}</p>}
+                {plan.giftcard && <p className="text-green-600 font-medium mb-2">Gift Card: ${plan.giftcard}</p>}
                 <p className="text-gray-900 font-bold text-lg mb-4">${plan.price} / month</p>
                 <p className="text-yellow-500 mb-4">Rating: {plan.rating} ⭐</p>
                 <button
